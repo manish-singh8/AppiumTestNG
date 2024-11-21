@@ -9,11 +9,11 @@ import java.time.Duration;
 
 public class BaseDriver {
 
-AndroidDriver driver;
+public AndroidDriver driver;
 
 
   public  AndroidDriver initAndroidDriver() throws MalformedURLException {
-       driver = new AndroidDriver(new URL("http://127.0.0.1:4723/"),getDesiredCapabalities());
+       driver = new AndroidDriver(new URL("http://127.0.0.1:4723"),getDesiredCapabalities());
 
       driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
       return driver;
@@ -26,9 +26,12 @@ AndroidDriver driver;
         capabilities.setCapability("appium:automationName", "UIAutomator2");
         capabilities.setCapability("platformName", "Android");
 
-       //capabilities.setCapability("app","/Users/manish80.singh/REST/APPIUM/Android/AppiumTestNGProject/src/main/resources/App/AmazonIndia.apk");
-        capabilities.setCapability("appPackage","com.android.settings");
-        capabilities.setCapability("appActivity","com.android.settings.Settings");
+        //capabilities.setCapability("appPackage","com.android.settings");
+        //capabilities.setCapability("appActivity","com.android.settings.Settings");
+
+       capabilities.setCapability("app",System.getProperty("user.dir")+"/src/main/resources/App/AmazonIndia.apk");
+        //capabilities.setCapability("appPackage","com.android.settings");
+        //capabilities.setCapability("appActivity","com.android.settings.Settings");
         capabilities.setCapability("newCommandTimeout",120);
         return capabilities;
     }
